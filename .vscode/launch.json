@@ -5,14 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "msggateway",
+            "name": "run",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/cmd/openim-msggateway/main.go",
+            "program": "${workspaceFolder}/cmd/main.go",
             "args": [
-                "-i0",
-                "-c${workspaceFolder}/config/"
+                "-c",
+                "${workspaceFolder}/config/"
             ]
         }
     ]
