@@ -46,7 +46,7 @@ services:
       - MONGO_INITDB_DATABASE=openim_v3
       - MONGO_OPENIM_USERNAME=openIM
       - MONGO_OPENIM_PASSWORD=openIM123
-    restart: always
+    restart: "no"
     networks:
       - openim
 
@@ -60,7 +60,7 @@ services:
       - "${DATA_DIR}/components/redis/config/redis.conf:/usr/local/redis/config/redis.conf"
     environment:
       TZ: Asia/Shanghai
-    restart: always
+    restart: "no"
     sysctls:
       net.core.somaxconn: 1024
     command: >
@@ -165,7 +165,7 @@ services:
         
         tail -f /dev/null
       '
-    restart: always
+    restart: "no"
     networks:
       - openim
 
@@ -173,7 +173,7 @@ services:
     image: "${KAFKA_IMAGE}"
     container_name: kafka
     user: root
-    restart: always
+    restart: "no"
     ports:
       - "19094:9094"
     volumes:
@@ -252,7 +252,7 @@ services:
       TZ: Asia/Shanghai
       MINIO_ROOT_USER: root
       MINIO_ROOT_PASSWORD: openIM123
-    restart: always
+    restart: "no"
     command: minio server /data --console-address ':9090'
     networks:
       - openim
@@ -260,7 +260,7 @@ services:
   openim-web-front:
     image: ${OPENIM_WEB_FRONT_IMAGE}
     container_name: openim-web-front
-    restart: always
+    restart: "no" 
     ports:
       - "11001:80"
     networks:
@@ -278,7 +278,7 @@ services:
   prometheus:
     image: ${PROMETHEUS_IMAGE}
     container_name: prometheus
-    restart: always
+    restart: "no" 
     user: root
     profiles:
       - m
@@ -295,7 +295,7 @@ services:
   alertmanager:
     image: ${ALERTMANAGER_IMAGE}
     container_name: alertmanager
-    restart: always
+    restart: "no" 
     profiles:
       - m
     volumes:
@@ -310,7 +310,7 @@ services:
     image: ${GRAFANA_IMAGE}
     container_name: grafana
     user: root
-    restart: always
+    restart: "no" 
     profiles:
       - m
     environment:
@@ -327,7 +327,7 @@ services:
   node-exporter:
     image: ${NODE_EXPORTER_IMAGE}
     container_name: node-exporter
-    restart: always
+    restart: "no" 
     profiles:
       - m
     volumes:
